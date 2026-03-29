@@ -119,12 +119,18 @@ Example:
    > :information_source: The command `npm run sqlz` is an alias for `npx -w backend sequelize-cli`.  
    > Execute `npm run sqlz -- --help` to see more of `sequelize-cli` commands availables.
 
-9. Optionally you can run the following command to populate your database with some dummy data:
+9. Run db:migrate command to create all necessary tables and columns (see /backend/models for more details)
+
+   ```bash
+   npm run sqlz -- db:migrate
+   ```
+
+10. Optionally you can run the following command to populate your database with some dummy data:
 
    ```bash
    npm run sqlz -- db:seed:all
    ```
-   
+
 ### Development Server
 To run the System-under-test, follow these steps:
 
