@@ -10,8 +10,8 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: 'html',
   use: {
-    // Set baseURL to FE for standard 'page.goto()' actions
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    // if running the app on dev env, change port to FE port (3000) instead
+    baseURL: process.env.BASE_URL || 'http://localhost:3001',
     trace: 'on-first-retry',
   },
 
@@ -22,20 +22,14 @@ export default defineConfig({
     },
   ],
 
-  /* Run local dev server before starting the tests */
+  /* Run server in test env before starting the tests */
   webServer: [
     {
-      command: 'npm run dev -w frontend',
-      url: 'http://localhost:3000',
-      reuseExistingServer: !process.env.CI,
-      timeout: 60 * 1000,
-    },
-    {
-      command: 'npm run dev -w backend',
+      command: 'NODE_ENV=test npm run start',
       url: 'http://localhost:3001',
-      reuseExistingServer: !process.env.CI,
       timeout: 60 * 1000,
+      reuseExistingServer: !process.env.CI,
+      cwd: '..',
     }
   ],
-
 });
