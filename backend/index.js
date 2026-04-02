@@ -25,7 +25,7 @@ app.use(express.json());
   }
 })();
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "test") {
   app.use(express.static("../frontend/dist"));
 } else {
   app.get("/", (req, res) => res.json({ status: "API is running on /api" }));
