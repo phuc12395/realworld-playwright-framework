@@ -1,5 +1,7 @@
-require("dotenv").config();
-const env = process.env.NODE_ENV || "development";
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV || "dev"}`
+});
+const env = (process.env.NODE_ENV || "dev");
 const PORT = process.env.PORT || 3001;
 const express = require("express");
 const cors = require("cors");
